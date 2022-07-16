@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{% endblock %}
+{% block title %}{{ question }}{% endblock %}
 {% block content %}
     <hr>
     <div class="content">
@@ -8,7 +8,6 @@
             <p>Неправильных ответов: {{ wrong_answer }}</p>
             <p>Процент правильных ответов: {{ percent }} %</p>
         {% else %}
-            {% for question in questions %}
                 <p><b>{{ question.title }}</b></p>
                 <p><b>{{ question.description }}</b></p>
                 <form method="post">
@@ -26,7 +25,6 @@
                     {% endfor %}
                     <input type="submit">
                 </form>
-            {% endfor %}
         {% endif %}
     </div>
 {% endblock %}
