@@ -1,14 +1,7 @@
 from django.contrib import admin
-from django.contrib import messages
-from django.shortcuts import redirect
 
 from user_test.forms import AnswerInlineFormSet
-from user_test.models import Test, TestQuestion, Answer, UserTest
-
-
-@admin.register(UserTest)
-class UserTestAdmin(admin.ModelAdmin):
-    pass
+from user_test.models import Test, TestQuestion, Answer
 
 
 @admin.register(Test)
