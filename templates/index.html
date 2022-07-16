@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <hr>
+    <div class="content">
+    {% if request.user.is_authenticated %}
+        {% for test in tests %}
+            <a href="/test/{{ test.id }}">
+            <div style="background-color: aqua">
+            {{ test.title }}
+            </div>
+            </a>
+            <p></p>
+        {% endfor %}
+    {% else %}
+        Авторизуйтесь
+    {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+    <hr>
+    <div class="content">
+        {% if success_answer %}
+            <p>Правильных ответов: {{ success_answer }}</p>
+            <p>Неправильных ответов: {{ wrong_answer }}</p>
+            <p>Процент правильных ответов: {{ percent }} %</p>
+        {% else %}
+            {% for question in questions %}
+                <p><b>{{ question.title }}</b></p>
+                <p><b>{{ question.description }}</b></p>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="page" value="{{ questions.number }}">
+                    {% if questions.has_next %}
+                        <input type="hidden" name="next" value="{{ questions.next_page_number }}">
+                    {% else %}
+                        <input type="hidden" name="next" value="result">
+                    {% endif %}
+                    {% for answer in question.answer.all %}
+                        <p>
+                            <input type="checkbox" name="answer" value="{{ answer.id }}"> {{ answer.answer }}
+                        </p>
+                    {% endfor %}
+                    <input type="submit">
+                </form>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
